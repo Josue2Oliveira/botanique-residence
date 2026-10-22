@@ -1,4 +1,6 @@
 :root {
+  --font-serif: "Cormorant Garamond";
+  --font-sans: "Manrope";
   --verde: #17332a;
   --verde-escuro: #0e2219;
   --verde-medio: #24503f;

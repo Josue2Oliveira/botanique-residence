@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 
-const serif = Cormorant_Garamond({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-serif" });
-const sans = Manrope({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Botanique Residence | Josué Oliveira, especialista no condomínio",
@@ -17,7 +14,15 @@ const GADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="pt-BR">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap"
+        />
+      </head>
       <body>
         {children}
 
