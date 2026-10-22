@@ -1,0 +1,41 @@
+import type { Metadata } from "next";
+import Script from "next/script";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
+import "./globals.css";
+
+const serif = Cormorant_Garamond({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-serif" });
+const sans = Manrope({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-sans" });
+
+export const metadata: Metadata = {
+  title: "Botanique Residence | Josué Oliveira, especialista no condomínio",
+  description:
+    "Lançamento no Coxipó, Cuiabá: condomínio fechado com lotes de 250 a 347 m², lago natural e lazer estilo resort. Atendimento com Josué Oliveira, CRECI/MT F-12860.",
+};
+
+const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+const GADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="pt-BR" className={`${serif.variable} ${sans.variable}`}>
+      <body>
+        {children}
+
+        {PIXEL_ID && (
+          <Script id="meta-pixel" strategy="afterInteractive">
+            {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${PIXEL_ID}');fbq('track','PageView');`}
+          </Script>
+        )}
+
+        {GADS_ID && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GADS_ID}`} strategy="afterInteractive" />
+            <Script id="google-ads" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GADS_ID}');`}
+            </Script>
+          </>
+        )}
+      </body>
+    </html>
+  );
+}
