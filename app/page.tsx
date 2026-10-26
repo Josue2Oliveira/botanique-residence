@@ -2,7 +2,9 @@ import Image from "next/image";
 import Foto from "@/components/Foto";
 import LeadForm from "@/components/LeadForm";
 import WhatsAppLink, { IconeChat } from "@/components/WhatsAppLink";
-import { corretor, equipamentos, imagens, lazer, proximos, referenciaLocal } from "@/lib/config";
+import { central, corretor, empreendimento, equipamentos, imagens, lazer, proximos, referenciaLocal, video } from "@/lib/config";
+import VideoCorretor from "@/components/VideoCorretor";
+import AgendarVisitaLink from "@/components/AgendarVisitaLink";
 
 function Check() {
   return (
@@ -75,7 +77,7 @@ export default function Home() {
       </section>
 
       {/* ===== ESPECIALISTA ===== */}
-      <section className="container especialista">
+      <section className={video.url ? "container especialista com-video" : "container especialista"}>
         <div className="esp-foto-anel">
           <Foto src={imagens.josue} alt={`Foto de ${corretor.nome}`} rotulo="FOTO: Josué" className="esp-foto" sizes="(max-width: 768px) 80vw, 360px" />
         </div>
@@ -88,6 +90,11 @@ export default function Home() {
           </p>
           <WhatsAppLink className="btn btn-verde"><IconeChat size={20} />Falar com o Josué</WhatsAppLink>
         </div>
+        {video.url && (
+          <div className="esp-video">
+            <VideoCorretor url={video.url} vertical={video.vertical} titulo={`${corretor.nome} apresenta o Botanique Residence`} />
+          </div>
+        )}
       </section>
 
       {/* ===== SOBRE ===== */}
@@ -141,20 +148,46 @@ export default function Home() {
           <h2>No Coxipó, perto do que importa no seu dia a dia.</h2>
           <p className="referencia"><Pin />{referenciaLocal}</p>
           <p>Acesso rápido aos principais eixos da cidade, com comércio e serviços a poucos minutos.</p>
-          <a href="#contato" className="btn btn-verde">Quero agendar uma visita</a>
+          <ul className="lista-proximos compacta">
+            {proximos.map((p) => (
+              <li key={p}><Pin />{p}</li>
+            ))}
+          </ul>
         </div>
-        {imagens.mapa ? (
-          <Foto src={imagens.mapa} alt="Mapa de localização do Botanique Residence" rotulo="MAPA" className="foto-1x1 arredondada" />
-        ) : (
-          <div className="card-local">
-            <span className="eyebrow ouro">Região do Coxipó · Cuiabá/MT</span>
-            <ul className="lista-proximos">
-              {proximos.map((p) => (
-                <li key={p}><Pin />{p}</li>
-              ))}
-            </ul>
+        <div className="mapa-box">
+          <iframe
+            title="Localização do Botanique Residence no mapa"
+            src={`https://maps.google.com/maps?q=${empreendimento.lat},${empreendimento.lng}&z=15&hl=pt-BR&output=embed`}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+          <div className="mapa-rodape">
+            <span><Pin />Botanique Residence · Coxipó, Cuiabá/MT</span>
+            <a href={`https://www.google.com/maps?q=${empreendimento.lat},${empreendimento.lng}`} target="_blank" rel="noopener noreferrer">Abrir no Google Maps</a>
           </div>
-        )}
+        </div>
+      </section>
+
+      {/* ===== CENTRAL DE VENDAS ===== */}
+      <section className="grad-claro">
+        <div className="container duas-col central">
+          <Foto src={imagens.central} alt="Central de vendas do Botanique Residence ao entardecer" rotulo="FOTO: Central de vendas" className="foto-16x9 arredondada" sizes="(max-width: 768px) 100vw, 50vw" />
+          <div className="col-txt">
+            <span className="eyebrow">Central Botanique Residence</span>
+            <h2>Conheça a maquete com atendimento exclusivo.</h2>
+            <p>
+              A Central de Vendas fica em uma via movimentada e de fácil acesso, {central.local.charAt(0).toLowerCase() + central.local.slice(1)}. Lá você vê a maquete completa do condomínio e entende a posição de cada lote, do lago e das áreas de lazer.
+            </p>
+            {central.enderecoCompleto && <p className="referencia"><Pin />{central.enderecoCompleto}</p>}
+            <div className="aviso-visita" role="note">
+              <strong>Vai visitar a Central? Agende comigo.</strong>
+              <span>
+                Assim eu reservo um horário e te recebo pessoalmente. Se for direto, informe na recepção que você é atendido pelo corretor <b>{corretor.nome}</b>, para garantir a continuidade do seu atendimento.
+              </span>
+            </div>
+            <AgendarVisitaLink className="btn btn-verde btn-grande"><IconeChat size={20} />Agendar minha visita com o Josué</AgendarVisitaLink>
+          </div>
+        </div>
       </section>
 
       {/* ===== IMPLANTAÇÃO ===== */}

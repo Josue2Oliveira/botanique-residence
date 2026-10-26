@@ -17,6 +17,15 @@ Abra http://localhost:3000
 
 Dicas: use .jpg ou .webp, nomes sem espaço e sem acento, até ~500 KB por foto. O Next.js otimiza o resto.
 
+## Vídeo do corretor
+Em `lib/config.ts`, no bloco `video`, troque `url: null` pelo link do YouTube (normal ou Shorts):
+`url: "https://youtube.com/shorts/SEU-ID",`
+Gravou deitado? Mude `vertical: true` para `false`.
+
+## Central de vendas
+Textos e mensagem de agendamento ficam no bloco `central` de `lib/config.ts`.
+Para mostrar o endereço com número, preencha `enderecoCompleto`.
+
 ## Planilha de leads (Google Sheets)
 1. Na planilha: Extensões > Apps Script. Apague o que estiver lá e cole o conteúdo de `google-apps-script.js`.
 2. Troque o `TOKEN` por uma senha sua e salve.

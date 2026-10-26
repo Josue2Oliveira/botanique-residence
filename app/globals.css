@@ -241,3 +241,47 @@ img { display: block; }
 .armadilha { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form-card { position: relative; }
 .form-ok { font-size: 14px; font-weight: 600; color: #1e7a4c; background: #e5f3ea; border-radius: 10px; padding: 10px 14px; }
+
+/* ---------- vídeo do corretor ---------- */
+.esp-video { flex: 0 1 300px; min-width: 240px; margin: 0 auto; }
+.video-box { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden; background: var(--verde); box-shadow: 0 16px 40px rgba(23,51,42,.2); }
+.video-box.vertical { aspect-ratio: 9 / 16; }
+.video-box iframe, .video-box video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-capa { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; padding: 0; cursor: pointer; background: var(--verde); }
+.video-capa img { width: 100%; height: 100%; object-fit: cover; }
+.video-capa::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,34,25,0) 45%, rgba(14,34,25,.85) 100%); }
+.video-play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1;
+  width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: var(--grad-ouro); color: var(--verde); box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+.video-legenda { position: absolute; left: 16px; right: 16px; bottom: 16px; z-index: 1; color: #fff; font-weight: 700; font-size: 15px; text-align: left; }
+.especialista { flex-wrap: wrap; }
+
+/* ---------- mapa ---------- */
+.mapa-box { flex: 1 1 460px; min-width: 0; border-radius: 20px; overflow: hidden; background: #fff; box-shadow: 0 16px 40px rgba(23,51,42,.15); display: flex; flex-direction: column; }
+.mapa-box iframe { width: 100%; aspect-ratio: 4 / 3; border: 0; display: block; }
+.mapa-rodape { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; padding: 14px 18px; font-size: 14px; font-weight: 600; }
+.mapa-rodape span { display: inline-flex; align-items: center; gap: 8px; }
+.mapa-rodape svg { color: var(--ouro-escuro); }
+.mapa-rodape a { color: var(--verde); }
+.lista-proximos.compacta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.lista-proximos.compacta li { padding: 12px 14px; font-size: 15px; box-shadow: 0 4px 14px rgba(23,51,42,.06); }
+.lista-proximos.compacta svg { color: var(--ouro-escuro); flex-shrink: 0; }
+
+/* ---------- central de vendas ---------- */
+.central > .foto { flex: 1 1 520px; box-shadow: 0 20px 50px rgba(23,51,42,.25); }
+.aviso-visita {
+  display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; border-radius: 16px;
+  background: #fff; border: 2px solid transparent;
+  background-image: linear-gradient(#fff, #fff), var(--grad-ouro);
+  background-origin: border-box; background-clip: padding-box, border-box;
+  font-size: 15px; line-height: 1.6; color: var(--texto-suave);
+}
+.aviso-visita strong { color: var(--verde); font-size: 17px; }
+.aviso-visita b { color: var(--verde); }
+@media (max-width: 600px) { .lista-proximos.compacta { grid-template-columns: 1fr; } }
+.com-video { gap: 40px; align-items: center; }
+.com-video .esp-foto-anel { flex: 0 1 300px; }
+.com-video .esp-txt { flex: 1 1 340px; }
+.com-video .esp-video { flex: 0 1 270px; }

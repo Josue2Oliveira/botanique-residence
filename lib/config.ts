@@ -31,6 +31,34 @@ export const imagens = {
   mapa: null as string | null, //   opcional: mapa de localização
   implantacao: "/images/implantacao-mapa.webp" as string | null,
   setores: "/images/implantacao-setores.webp" as string | null,
+  central: "/images/central.webp" as string | null,
+};
+
+// ---------------------------------------------------------------------
+//  VÍDEO DO CORRETOR
+//  Cole o link do YouTube (normal ou Shorts), ex.:
+//    "https://youtube.com/shorts/AbCdEfGhIjK"  ou  "https://www.youtube.com/watch?v=AbCdEfGhIjK"
+//  Ou um arquivo .mp4 colocado em public/videos/, ex.: "/videos/josue.mp4"
+//  Enquanto estiver null, a seção do vídeo não aparece.
+// ---------------------------------------------------------------------
+export const video = {
+  url: "https://youtube.com/shorts/OWXh3fftmfc" as string | null,
+  vertical: true, // true = gravado em pé (celular); false = deitado
+};
+
+// Localização do empreendimento no mapa
+export const empreendimento = {
+  lat: -15.626463253928964,
+  lng: -56.023955531800645,
+};
+
+// Central de vendas (plantão)
+export const central = {
+  local: "Na rotatória da Estrada do Moinho com o Recanto dos Pássaros",
+  // Deixe null para NÃO mostrar o número no site (o endereço exato vai pelo WhatsApp ao agendar).
+  // Para mostrar, troque por: "Av. Rui Barbosa, nº 11, Recanto dos Pássaros, Cuiabá/MT"
+  enderecoCompleto: null as string | null,
+  mensagemAgendar: "Olá Josué! Vim do seu site e quero agendar uma visita à Central de Vendas do Botanique Residence.",
 };
 
 export const lazer: { nome: string; desc: string; foto: string | null }[] = [
