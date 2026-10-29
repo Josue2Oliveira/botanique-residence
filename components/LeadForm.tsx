@@ -37,7 +37,7 @@ export default function LeadForm() {
       keepalive: true,
     }).catch(() => {});
 
-    registrarLead();
+    registrarLead("formulario");
 
     const msg =
       `${corretor.mensagemPadrao}\n\n` +

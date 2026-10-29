@@ -13,7 +13,7 @@ export function IconeChat({ size = 22 }: { size?: number }) {
 
 export default function WhatsAppLink({ className, children, ariaLabel }: { className: string; children: React.ReactNode; ariaLabel?: string }) {
   return (
-    <a href={linkWhatsApp()} target="_blank" rel="noopener noreferrer" className={className} aria-label={ariaLabel} onClick={registrarLead}>
+    <a href={linkWhatsApp()} target="_blank" rel="noopener noreferrer" className={className} aria-label={ariaLabel} onClick={() => registrarLead("whatsapp")}>
       {children}
     </a>
   );

@@ -11,6 +11,9 @@ export const metadata: Metadata = {
 
 const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 const GADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID; // Google Analytics (G-XXXXXXX)
+const TAG_ID = GA4_ID || GADS_ID;
+const configs = [GA4_ID, GADS_ID].filter(Boolean).map((id) => `gtag('config','${id}');`).join("");
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -32,11 +35,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </Script>
         )}
 
-        {GADS_ID && (
+        {TAG_ID && (
           <>
-            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GADS_ID}`} strategy="afterInteractive" />
-            <Script id="google-ads" strategy="afterInteractive">
-              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GADS_ID}');`}
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${TAG_ID}`} strategy="afterInteractive" />
+            <Script id="google-tag" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());${configs}`}
             </Script>
           </>
         )}

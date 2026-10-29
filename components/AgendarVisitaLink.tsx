@@ -5,7 +5,7 @@ import { registrarLead } from "./track";
 
 export default function AgendarVisitaLink({ className, children }: { className: string; children: React.ReactNode }) {
   return (
-    <a href={linkWhatsApp(central.mensagemAgendar)} target="_blank" rel="noopener noreferrer" className={className} onClick={registrarLead}>
+    <a href={linkWhatsApp(central.mensagemAgendar)} target="_blank" rel="noopener noreferrer" className={className} onClick={() => registrarLead("agendar_visita")}>
       {children}
     </a>
   );
