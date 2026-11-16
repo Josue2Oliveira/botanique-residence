@@ -12,7 +12,9 @@ export const metadata: Metadata = {
 const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 const GADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID; // Google Analytics (G-XXXXXXX)
-const TAG_ID = GA4_ID || GADS_ID;
+// O GA4 foi combinado na tag do Google Ads: o script só existe no ID AW- (G- retorna 404).
+// Os dois IDs continuam recebendo gtag('config') abaixo.
+const TAG_ID = GADS_ID || GA4_ID;
 const configs = [GA4_ID, GADS_ID].filter(Boolean).map((id) => `gtag('config','${id}');`).join("");
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
